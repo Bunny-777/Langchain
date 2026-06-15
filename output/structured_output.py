@@ -1,6 +1,6 @@
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
-from typing import TypedDict
+from typing import TypedDict, Annotated
 
 load_dotenv()
 llm=ChatGroq(
@@ -8,11 +8,11 @@ llm=ChatGroq(
 )
 
 class Review(TypedDict):
-    summary : str
-    sentiment : str
+    summary : Annotated[str,"A brief summary of the text given"]
+    sentiment : Annotated[str,"A sentiment about the text either positive, negative or neutral"]
 
 
 structured_model=llm.with_structured_output(Review)
-result=structured_model.invoke("Today when i wake up i got my girlfriend's message as good morning baby, she was very excited to tell me that today is her exam and she is missing me a lot and it gave me butterflies")
 
+result=structured_model.invoke("Today when i wake up i got my girlfriend's message as good morning baby, she was very excited to tell me that today is her exam and she is missing me a lot and it gave me butterflies")
 print(result)
