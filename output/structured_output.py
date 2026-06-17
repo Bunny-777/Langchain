@@ -1,3 +1,7 @@
+# some llm support structured output so we can use them just by structured output function
+# some open source doesn't support structured output so we have to convert them
+# using output parser
+
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 from typing import TypedDict, Annotated
@@ -5,6 +9,7 @@ from typing import TypedDict, Annotated
 load_dotenv()
 llm=ChatGroq(
     model="llama-3.3-70b-versatile" #old GPT model doesn't supports tool calling so this is used
+    
 )
 
 class Review(TypedDict):
@@ -16,3 +21,5 @@ structured_model=llm.with_structured_output(Review)
 
 result=structured_model.invoke("Today when i wake up i got my girlfriend's message as good morning baby, she was very excited to tell me that today is her exam and she is missing me a lot and it gave me butterflies")
 print(result)
+
+print(llm.invoke("Today when i wake up i got my girlfriend's message as good morning baby, she was very excited to tell me that today is her exam and she is missing me a lot and it gave me butterflies").content)
