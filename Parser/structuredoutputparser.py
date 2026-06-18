@@ -4,7 +4,8 @@ from langchain_classic.output_parsers import StructuredOutputParser, ResponseSch
 from dotenv import load_dotenv
 load_dotenv()
 llm=HuggingFaceEndpoint(
-    repo_id="CohereLabs/tiny-aya-earth",
+    # repo_id="CohereLabs/tiny-aya-earth",
+    repo_id="nex-agi/Nex-N2-Pro",
     task="text-generation"
 )
 model=ChatHuggingFace(llm=llm)
