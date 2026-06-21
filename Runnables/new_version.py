@@ -34,6 +34,11 @@ class NakliPromptTemplate(Runnable):
     def invoke(self,input_dict):
         return self.template.format(**input_dict)
 
+class NakliParser(Runnable):
+    def __init__(self):
+        pass
+    def invoke(self,input_data):
+        return input_data['response']
 class RunnableConnector(Runnable):
     def __init__(self,runnable_list): #here we work like Chain=RunnableConnector([llm,prompt]) so list will be made
         self.runnable_list=runnable_list
@@ -48,6 +53,7 @@ prompt=NakliPromptTemplate(
     template="who is the father of {person}",
     input_variables=["person"]
 )
-chain=RunnableConnector([prompt,llm])
+parser=NakliParser()
+chain=RunnableConnector([prompt,llm,parser])
 
 print(chain.invoke({"person":"milka singh"}))
