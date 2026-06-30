@@ -1,5 +1,11 @@
-from langchain_community.tools import DuckDuckGoSearchRun
+from langchain_community.tools import DuckDuckGoSearchRun,ShellTool
 search_tool=DuckDuckGoSearchRun()
-result=search_tool.invoke("iphone 17")
-print(result)
+shell_tool=ShellTool()
 
+
+result=search_tool.invoke("iphone 17")
+# print(result)
+
+
+query=shell_tool.invoke("whoami")
+print(query)
