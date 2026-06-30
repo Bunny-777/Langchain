@@ -16,4 +16,6 @@ result=multiply.invoke({"a":4,"b":5})
 print(result)
 
 
-
+print(multiply.name)
+print(multiply.args)
+print(multiply.description)
